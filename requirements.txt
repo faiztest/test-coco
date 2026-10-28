@@ -1,0 +1,55 @@
+# Coconut Libtool -- dependensi.
+# Diuji: Python 3.12, Streamlit 1.66. Setelah memastikan aplikasi berjalan di server Anda,
+# jalankan `pip freeze > requirements.lock.txt` dan pakai file itu untuk deploy agar build
+# hari ini sama dengan build bulan depan.
+
+# --- aplikasi & data ---
+streamlit>=1.50,<2        # st.iframe / width="stretch" / on_click="ignore" (download_button)
+pandas>=2.2
+numpy>=1.26,<2            # spaCy 3.7.x dan scipy 1.12 butuh numpy 1.x
+scipy==1.12.0             # kompatibel dengan gensim
+scikit-learn
+openpyxl                  # .xlsx
+xlrd                      # .xls (openpyxl tidak bisa membaca .xls)
+defusedxml                # parser XML aman untuk file unggahan
+pymarc                    # katalog HathiTrust
+requests
+
+# --- teks & NLP ---
+nltk
+spacy==3.7.2
+preshed==3.0.9            # versi lebih baru membuat spacy.load gagal (OverflowError) di lingkungan uji
+cymem==2.0.8
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz
+scattertext
+textblob
+vaderSentiment
+wordcloud
+
+# --- visualisasi ---
+plotly
+kaleido                   # ekspor PNG plotly (butuh Chrome/Chromium: lihat packages.txt)
+matplotlib
+altair
+altair-nx
+networkx
+streamlit-agraph
+html2image                # screenshot pyLDAvis (opsional; ada fallback HTML)
+
+# --- analisis ---
+mlxtend==0.23.1
+gensim
+pyldavis
+bitermplus
+tmplot
+bertopic==0.16.4
+umap-learn
+datamapplot==0.4.2
+transformers
+sentencepiece             # tokenizer flan-t5
+openai
+
+# --- fork sendiri: dipin ke commit agar hasil bisa direproduksi ---
+# (burst_detection tidak lagi dibutuhkan: lihat tools/burst.py)
+# shifterator dari PyPI (0.3.0) gagal dengan matplotlib >= 3.10 ('tick.label'); fork ini berjalan
+git+https://github.com/faizhalas/shifterator@073bebdc44302bc284c8c05c1e44ff68e14672e1
